@@ -14,7 +14,7 @@ export default function NewExpenseForm() {
         </div>
         <div className="new-expense__control">
           <label>Date</label>
-          <input type="date" min="2020-01-01" max="2023-12-31" />
+          <input type="date" min="2021-01-01" max="2023-12-31" />
         </div>
       </div>
       <div className="new-expense__actions">
