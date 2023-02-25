@@ -15,6 +15,19 @@ export default function Expenses(props) {
     (expense) => expense.date.getFullYear().toString() === filteredYear
   );
 
+  let expensesContent = <p>no expenses found!</p>;
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expenses) => (
+      <ExpenseItem
+        key={expenses.id}
+        title={expenses.title}
+        amount={expenses.amount}
+        date={expenses.date}
+      />
+    ));
+  }
+
   return (
     <div>
       <Card className="expenses">
@@ -23,16 +36,7 @@ export default function Expenses(props) {
           onChangeFilter={filterChangeHandler}
         />
         {/* filteredExpenses가 없다면 사용자가 알 수 있도록 화면에 표시해주기 */}
-        {filteredExpenses.length === 0 && <p>no expenses found!</p>}
-        {filteredExpenses.length > 0 &&
-          filteredExpenses.map((expenses) => (
-            <ExpenseItem
-              key={expenses.id}
-              title={expenses.title}
-              amount={expenses.amount}
-              date={expenses.date}
-            />
-          ))}
+        {expensesContent}
       </Card>
     </div>
   );
