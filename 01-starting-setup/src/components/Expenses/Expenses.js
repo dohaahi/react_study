@@ -1,8 +1,8 @@
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 import { useState } from "react";
+import ExpensesList from "./ExpensesList";
 
 export default function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("2021");
@@ -15,19 +15,6 @@ export default function Expenses(props) {
     (expense) => expense.date.getFullYear().toString() === filteredYear
   );
 
-  let expensesContent = <p>no expenses found!</p>;
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expenses) => (
-      <ExpenseItem
-        key={expenses.id}
-        title={expenses.title}
-        amount={expenses.amount}
-        date={expenses.date}
-      />
-    ));
-  }
-
   return (
     <div>
       <Card className="expenses">
@@ -35,8 +22,7 @@ export default function Expenses(props) {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {/* filteredExpenses가 없다면 사용자가 알 수 있도록 화면에 표시해주기 */}
-        {expensesContent}
+        <ExpensesList items={filteredExpenses} />s
       </Card>
     </div>
   );
