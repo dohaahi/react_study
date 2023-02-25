@@ -22,13 +22,19 @@ export default function Expenses(props) {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredExpenses.map((expenses) => (
-          <ExpenseItem
-            title={expenses.title}
-            amount={expenses.amount}
-            date={expenses.date}
-          />
-        ))}
+        {/* filteredExpenses가 없다면 사용자가 알 수 있도록 화면에 표시해주기 */}
+        {filteredExpenses.length === 0 ? (
+          <p>no expenses found!</p>
+        ) : (
+          filteredExpenses.map((expenses) => (
+            <ExpenseItem
+              key={expenses.id}
+              title={expenses.title}
+              amount={expenses.amount}
+              date={expenses.date}
+            />
+          ))
+        )}
       </Card>
     </div>
   );
