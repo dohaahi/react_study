@@ -23,9 +23,8 @@ export default function Expenses(props) {
           onChangeFilter={filterChangeHandler}
         />
         {/* filteredExpenses가 없다면 사용자가 알 수 있도록 화면에 표시해주기 */}
-        {filteredExpenses.length === 0 ? (
-          <p>no expenses found!</p>
-        ) : (
+        {filteredExpenses.length === 0 && <p>no expenses found!</p>}
+        {filteredExpenses.length > 0 &&
           filteredExpenses.map((expenses) => (
             <ExpenseItem
               key={expenses.id}
@@ -33,8 +32,7 @@ export default function Expenses(props) {
               amount={expenses.amount}
               date={expenses.date}
             />
-          ))
-        )}
+          ))}
       </Card>
     </div>
   );
