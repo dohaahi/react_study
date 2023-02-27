@@ -4,7 +4,7 @@ export default function ChartBar(props) {
   let barFillHeight = "0%";
 
   // barFillHeight가 0 초과라면 value를 퍼센트로 나타냄
-  if (props.max > 0) {
+  if (props.maxValue > 0) {
     barFillHeight = Math.round((props.value / props.maxValue) * 100) + "%";
   }
 
