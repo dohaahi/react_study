@@ -10,6 +10,18 @@ const AddUser = (props) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
+
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+
+    // age가 string 타입으로 들어오기 때문에 '+'를 사용해 숫자형으로 변환
+    if (+enteredAge < 1) {
+      return;
+    }
+
+    setEnteredUsername("");
+    setEnteredAge("");
   };
 
   const usernameChangeHandler = (event) => {
@@ -26,9 +38,20 @@ const AddUser = (props) => {
       <form onSubmit={addUserHandler}>
         {/* label에 htmlFor 속성을 줘서 input과 연결 */}
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" onChange={usernameChangeHandler} />
+        {/* value props를 추가해서 onChange될 때 뿐만이 아니라 submit이 되고 난 후에도 값이 반영되도록함 */}
+        <input
+          id="username"
+          type="text"
+          value={enteredUsername}
+          onChange={usernameChangeHandler}
+        />
         <label htmlFor="age">Age(Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler} />
+        <input
+          id="age"
+          type="number"
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        />
         <Button>Add User</Button>
       </form>
     </Card>
