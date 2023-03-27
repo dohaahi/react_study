@@ -1,7 +1,7 @@
 import Card from "../UI/Card";
 import classes from "./AddUser.module.css";
 
-const AddUSer = (props) => {
+const AddUser = (props) => {
   const addUserHandler = (event) => {
     event.preventDefault();
   };
@@ -21,4 +21,4 @@ const AddUSer = (props) => {
   );
 };
 
-export default AddUSer;
+export default AddUser;
