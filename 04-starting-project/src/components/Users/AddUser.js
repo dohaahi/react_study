@@ -15,11 +15,12 @@ const AddUser = (props) => {
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       return;
     }
-
     // age가 string 타입으로 들어오기 때문에 '+'를 사용해 숫자형으로 변환
     if (+enteredAge < 1) {
       return;
     }
+
+    props.onAddUser(enteredUsername, enteredAge);
 
     setEnteredUsername("");
     setEnteredAge("");
@@ -53,7 +54,7 @@ const AddUser = (props) => {
           value={enteredAge}
           onChange={ageChangeHandler}
         />
-        <Button>Add User</Button>
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
