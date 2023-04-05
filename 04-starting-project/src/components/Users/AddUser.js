@@ -3,6 +3,7 @@ import { useState } from "react";
 import Card from "../UI/Card";
 import classes from "./AddUser.module.css";
 import Button from "../UI/Button";
+import { ErrorModal } from "../UI/ErrorModal";
 
 // user의 정보를 추가하는 기능
 const AddUser = (props) => {
@@ -35,28 +36,31 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card className={classes.input}>
-      {/* form이 제출될 때 실행될 함수를 obSubmit props로 지정 */}
-      <form onSubmit={addUserHandler}>
-        {/* label에 htmlFor 속성을 줘서 input과 연결 */}
-        <label htmlFor="username">Username</label>
-        {/* value props를 추가해서 onChange될 때 뿐만이 아니라 submit이 되고 난 후에도 값이 반영되도록함 */}
-        <input
-          id="username"
-          type="text"
-          value={enteredUsername}
-          onChange={usernameChangeHandler}
-        />
-        <label htmlFor="age">Age(Years)</label>
-        <input
-          id="age"
-          type="number"
-          value={enteredAge}
-          onChange={ageChangeHandler}
-        />
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <div>
+      <ErrorModal title="An error occured!" message="Something went wrong!" />
+      <Card className={classes.input}>
+        {/* form이 제출될 때 실행될 함수를 obSubmit props로 지정 */}
+        <form onSubmit={addUserHandler}>
+          {/* label에 htmlFor 속성을 줘서 input과 연결 */}
+          <label htmlFor="username">Username</label>
+          {/* value props를 추가해서 onChange될 때 뿐만이 아니라 submit이 되고 난 후에도 값이 반영되도록함 */}
+          <input
+            id="username"
+            type="text"
+            value={enteredUsername}
+            onChange={usernameChangeHandler}
+          />
+          <label htmlFor="age">Age(Years)</label>
+          <input
+            id="age"
+            type="number"
+            value={enteredAge}
+            onChange={ageChangeHandler}
+          />
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
